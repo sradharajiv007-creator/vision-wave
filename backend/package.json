@@ -1,0 +1,20 @@
+{
+  "name": "assistive-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Assistive Vision & Wireless Optimization prototype",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "NODE_ENV=production node src/server.js"
+  },
+  "author": "Cursor Dev",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0"
+  }
+}
+
