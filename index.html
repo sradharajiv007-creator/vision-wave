@@ -152,7 +152,7 @@
               />
             </label>
             <p class="form-hint">
-              Solver will iterate until change &lt; 0.001 to mimic Lagrange optimization before the C backend is ready.
+              Lagrange Multiplier solver runs client-side (or via API if available). Iterates until convergence &lt; 0.001.
             </p>
           </form>
 
@@ -173,11 +173,21 @@
               </div>
               <div>
                 <p class="eyebrow">Projected Latency</p>
-                <p class="result-value"><span id="optLatency">--</span> ms</p>
+                <p class="result-value"><span id="optLatency">--</span></p>
               </div>
+            </div>
+            <div class="result-improvement" id="improvementSection" style="display: none;">
+              <div class="improvement-badge">
+                <span class="improvement-label">Latency Improvement</span>
+                <span class="improvement-value" id="improvementPercent">--</span>
+              </div>
+              <p class="improvement-detail">
+                Baseline: <span id="baselineLatency">--</span> → Optimized: <span id="finalLatency">--</span>
+              </p>
             </div>
             <div class="result-meta">
               <p id="solverStatus">Awaiting input…</p>
+              <p id="solverIterations" style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;"></p>
             </div>
           </div>
         </div>

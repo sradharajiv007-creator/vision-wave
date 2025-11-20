@@ -248,6 +248,39 @@ input[type='number'] {
   font-weight: 600;
 }
 
+.result-improvement {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.improvement-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.improvement-label {
+  font-size: 0.875rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.improvement-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.improvement-detail {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
 .result-meta {
   margin-top: 1rem;
   color: var(--muted);
