@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assistive Vision & Network Optimizer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.16.0/dist/tf.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Version 1.0 • Web Preview</p>
+        <h1>Optimized Assistive Vision App</h1>
+        <p class="subtitle">
+          Real-time object recognition with audio guidance and latency-aware wireless optimization.
+        </p>
+        <div class="cta-row">
+          <button id="assistiveModeBtn" class="primary">Assistive Mode</button>
+          <button id="optimizerModeBtn" class="ghost">Optimization Mode</button>
+        </div>
+      </div>
+      <div class="status-card">
+        <p>Latency Monitor</p>
+        <h2 id="latencyValue">-- ms</h2>
+        <p id="latencyStatus">Awaiting data…</p>
+      </div>
+    </header>
+
+    <main>
+      <section id="assistiveSection" class="panel active">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Assistive Vision Workflow</p>
+            <h2>Camera, Detection, Audio</h2>
+          </div>
+          <button id="startAssistive" class="primary">Start Assistive Vision</button>
+        </div>
+        <div class="assistive-grid">
+          <div class="camera-card">
+            <video id="cameraFeed" autoplay muted playsinline></video>
+            <canvas id="cameraOverlay"></canvas>
+            <div class="camera-status" id="cameraStatus">Camera idle</div>
+          </div>
+          <div class="insight-card">
+            <h3>Detected Objects</h3>
+            <ul id="objectList">
+              <li>No data yet</li>
+            </ul>
+            <div class="tts-controls">
+              <button id="speakButton" class="ghost" disabled>Speak Objects</button>
+              <label class="toggle">
+                <input type="checkbox" id="autoSpeechToggle" checked />
+                <span>Auto Speech</span>
+              </label>
+            </div>
+            <div class="alert" id="latencyWarning" hidden>
+              Network slow, optimizing parameters…
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="optimizerSection" class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Wireless Network Optimization</p>
+            <h2>Lagrange Multiplier Solver</h2>
+          </div>
+          <button id="runOptimizer" class="primary">Run Optimization</button>
+        </div>
+        <div class="optimizer-grid">
+          <form id="optimizerForm" class="form-card">
+            <label>
+              Minimum Data Rate (Mbps)
+              <input
+                type="number"
+                id="minRate"
+                name="minRate"
+                min="0.1"
+                step="0.1"
+                value="5"
+                required
+              />
+            </label>
+            <label>
+              Maximum Transmission Power (W)
+              <input
+                type="number"
+                id="maxPower"
+                name="maxPower"
+                min="0.1"
+                step="0.1"
+                value="2.5"
+                required
+              />
+            </label>
+            <label>
+              Maximum Bandwidth (MHz)
+              <input
+                type="number"
+                id="maxBandwidth"
+                name="maxBandwidth"
+                min="0.1"
+                step="0.1"
+                value="20"
+                required
+              />
+            </label>
+            <label>
+              Latency Coefficient a
+              <input
+                type="number"
+                id="coeffA"
+                name="coeffA"
+                min="0.01"
+                step="0.01"
+                value="1.2"
+                required
+              />
+            </label>
+            <label>
+              Latency Coefficient b
+              <input
+                type="number"
+                id="coeffB"
+                name="coeffB"
+                min="0.01"
+                step="0.01"
+                value="0.8"
+                required
+              />
+            </label>
+            <label>
+              Latency Coefficient c
+              <input
+                type="number"
+                id="coeffC"
+                name="coeffC"
+                min="0.01"
+                step="0.01"
+                value="0.5"
+                required
+              />
+            </label>
+            <p class="form-hint">
+              Solver will iterate until change &lt; 0.001 to mimic Lagrange optimization before the C backend is ready.
+            </p>
+          </form>
+
+          <div class="results-card">
+            <h3>Optimization Results</h3>
+            <div class="result-grid">
+              <div>
+                <p class="eyebrow">Optimized Data Rate</p>
+                <p class="result-value"><span id="optRate">--</span> Mbps</p>
+              </div>
+              <div>
+                <p class="eyebrow">Optimized Power</p>
+                <p class="result-value"><span id="optPower">--</span> W</p>
+              </div>
+              <div>
+                <p class="eyebrow">Optimized Bandwidth</p>
+                <p class="result-value"><span id="optBandwidth">--</span> MHz</p>
+              </div>
+              <div>
+                <p class="eyebrow">Projected Latency</p>
+                <p class="result-value"><span id="optLatency">--</span> ms</p>
+              </div>
+            </div>
+            <div class="result-meta">
+              <p id="solverStatus">Awaiting input…</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Prototype: Assistive Vision + Wireless Optimization • Designed for visually impaired users and developer researchers.
+      </p>
+    </footer>
+  </body>
+</html>
+
